@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MCP Study Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#f2f5f7; --surface:#ffffff; --fg:#14202b; --muted:#556675; --line:#d6dee5;
+  --accent:#0a7f6f; --accent-soft:#dcf2ee; --warn:#a85a05; --warn-soft:#fcefd9;
+  --tool:#0a7f6f; --res:#2563c9; --prm:#c2410c;
+  --tool-soft:#dcf2ee; --res-soft:#e0eafb; --prm-soft:#fde7dc;
+  --code-bg:#101c26; --code-fg:#dbe7f0; --code-mute:#7f93a3;
+  --font-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:16px;line-height:1.65;margin:0}
+a{color:var(--accent)}
+code{font-family:var(--font-mono);font-size:.88em;background:var(--accent-soft);color:var(--fg);padding:.1em .38em;border-radius:4px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:1.9rem;letter-spacing:-.01em}
+h3{font-size:1.2rem;margin-top:1.8rem;margin-bottom:.4rem}
+p{margin:.6rem 0}
+ul,ol{padding-left:1.25rem;margin:.5rem 0}
+li{margin:.3rem 0}
+.topbar{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:10px 16px}
+.brand{font-family:var(--font-display);font-weight:700;font-size:1.05rem;margin-right:auto;white-space:nowrap}
+.shell{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;max-width:1180px;margin:0 auto;padding:28px 16px 80px}
+.nav{position:sticky;top:64px;align-self:start;max-height:calc(100vh - 90px);overflow:auto;font-size:.9rem}
+.nav .grp{font:500 .72rem var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:16px 0 6px}
+.nav a{display:flex;gap:8px;align-items:flex-start;text-decoration:none;color:var(--fg);padding:5px 8px;border-radius:6px;line-height:1.35}
+.nav a:hover{background:var(--accent-soft)}
+.nav a.on{background:var(--accent-soft);font-weight:600}
+.nav .dot{flex:none;width:14px;height:14px;margin-top:3px;border:1.5px solid var(--line);border-radius:50%;background:transparent}
+main{min-width:0}
+section.lesson{padding-top:44px;border-top:1px solid var(--line);margin-top:44px}
+section.lesson:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.eyebrow{font:500 .75rem var(--font-mono);text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:6px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.4rem);letter-spacing:-.02em;font-weight:800}
+.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:60ch}
+.note{background:var(--warn-soft);border-left:3px solid var(--warn);padding:10px 14px;border-radius:0 8px 8px 0;font-size:.92rem;margin:16px 0}
+.tip{background:var(--accent-soft);border-left:3px solid var(--accent);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+.tip b.l,.note b.l{font:500 .72rem var(--font-mono);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:2px}
+.exam{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--prm);padding:10px 14px;border-radius:0 8px 8px 0;margin:14px 0}
+.exam b.l{font:500 .72rem var(--font-mono);text-transform:uppercase;letter-spacing:.08em;color:var(--prm);display:block;margin-bottom:2px}
+.tbl{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.92rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .74rem var(--font-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+.pill{display:inline-block;font:500 .78rem var(--font-mono);padding:2px 9px;border-radius:99px}
+.p-tool{background:var(--tool-soft);color:var(--tool)} .p-res{background:var(--res-soft);color:var(--res)} .p-prm{background:var(--prm-soft);color:var(--prm)}
+.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+.trio>div{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--line);border-radius:10px;padding:14px 16px;min-width:0}
+.trio .t{border-top-color:var(--tool)} .trio .r{border-top-color:var(--res)} .trio .p{border-top-color:var(--prm)}
+.trio h4{margin:0 0 4px;font:700 1.1rem var(--font-display)}
+.trio .who{font:500 .8rem var(--font-mono);color:var(--muted);margin-bottom:6px}
+pre{margin:14px 0;background:var(--code-bg);color:var(--code-fg);border-radius:10px;padding:14px 16px;overflow-x:auto;font:400 .84rem/1.6 var(--font-mono);tab-size:2}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+.fig{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;margin:16px 0;overflow-x:auto}
+.fig figcaption{font-size:.85rem;color:var(--muted);margin-top:8px}
+@media (max-width:900px){.shell{grid-template-columns:minmax(0,1fr);gap:0}.nav{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="brand">MCP Study Guide</div>
+</div>
+<div class="shell">
+  <nav class="nav" aria-label="Lessons">
+    <div class="grp">Start here</div>
+    <a href="#top"><span class="dot"></span>Cheat sheet</a>
+    <div class="grp">Course lessons</div>
+    <a href="#l1"><span class="dot"></span>1 · Introducing MCP</a>
+    <a href="#l2"><span class="dot"></span>2 · MCP clients</a>
+    <a href="#l3"><span class="dot"></span>3 · Project setup</a>
+    <a href="#l4"><span class="dot"></span>4 · Defining tools</a>
+    <a href="#l5"><span class="dot"></span>5 · The server inspector</a>
+    <a href="#l6"><span class="dot"></span>6 · Implementing a client</a>
+    <a href="#l7"><span class="dot"></span>7 · Defining resources</a>
+    <a href="#l8"><span class="dot"></span>8 · Accessing resources</a>
+    <a href="#l9"><span class="dot"></span>9 · Defining prompts</a>
+    <a href="#l10"><span class="dot"></span>10 · Prompts in the client</a>
+    <a href="#l11"><span class="dot"></span>11 · MCP review</a>
+    <div class="grp">Reference</div>
+    <a href="#gloss"><span class="dot"></span>Glossary</a>
+  </nav>
+  <main id="top">
+    <section class="lesson hero">
+      <div class="eyebrow">Anthropic Academy · Model Context Protocol</div>
+      <h1>Everything you need for the MCP quiz</h1>
+      <p class="lead">This guide explains the Model Context Protocol in practical, engineering-friendly terms: tools, resources, prompts, clients, servers, and the common patterns used in real MCP apps.</p>
+      <div class="note"><b class="l">About this guide</b>This project is a study companion for the introduction to MCP. It turns the course concepts into a single-page reference with key takeaways, diagrams, and examples.</div>
+      <div class="trio">
+        <div class="t"><span class="pill p-tool">Tools</span><h4>Model-controlled</h4><p>Claude decides when to call them to perform an action.</p></div>
+        <div class="r"><span class="pill p-res">Resources</span><h4>App-controlled</h4><p>The app fetches read-only data when needed for context or UI.</p></div>
+        <div class="p"><span class="pill p-prm">Prompts</span><h4>User-controlled</h4><p>Reusable instruction templates triggered by a command or workflow.</p></div>
+      </div>
+      <div class="exam"><b class="l">Key memory trick</b>Remember the order: <b>Model, App, User</b> for <b>Tools, Resources, Prompts</b>.</div>
+    </section>
+
+    <section class="lesson" id="l1">
+      <div class="eyebrow">Lesson 1</div>
+      <h2>What MCP is</h2>
+      <p><b>Model Context Protocol (MCP)</b> is a standard for connecting AI applications to external tools and data. It helps you connect Claude or other models to services without writing one-off wrappers over and over.</p>
+      <p>MCP gives you a shared language for tools, resources, and prompts so the AI can work with a system in a predictable way.</p>
+    </section>
+
+    <section class="lesson" id="l2">
+      <div class="eyebrow">Lesson 2</div>
+      <h2>MCP client and server</h2>
+      <p>The <b>host</b> is your application. The <b>client</b> sits inside it and talks to the <b>server</b>. The server exposes tools, resources, and prompts. That separation keeps the app logic clean and the external integrations reusable.</p>
+      <div class="fig"><pre>flowchart LR
+A[Your app] --> C[MCP client]
+C --> S[MCP server]
+S --> X[External tool or data source]</pre></div>
+    </section>
+
+    <section class="lesson" id="l3">
+      <div class="eyebrow">Lesson 3</div>
+      <h2>Project setup</h2>
+      <p>In the course project, the app creates a document chat where Claude can read and edit document content using tools. The project includes a server with a document store, a client wrapper, and a simple chat loop.</p>
+      <p>The key idea is that the app does not manually hardcode every tool call. Instead, it discovers tools through MCP and then hands them to Claude when needed.</p>
+    </section>
+
+    <section class="lesson" id="l4">
+      <div class="eyebrow">Lesson 4</div>
+      <h2>Tools</h2>
+      <p>Tools are functions the model can call when it decides it needs to do something. For example, reading a document or editing a file.</p>
+      <pre><code>@mcp.tool()
+def read_document(doc_id: str):
+    return docs[doc_id]</code></pre>
+      <p>Good tool descriptions matter, because the model uses them to decide whether a tool is relevant.</p>
+    </section>
+
+    <section class="lesson" id="l5">
+      <div class="eyebrow">Lesson 5</div>
+      <h2>Inspector</h2>
+      <p>The MCP Inspector is a debugging tool that lets you test a server without building a full client first. It is the easiest way to verify that tools, resources, and prompts are exposed correctly.</p>
+      <pre><code>mcp dev mcp_server.py</code></pre>
+    </section>
+
+    <section class="lesson" id="l6">
+      <div class="eyebrow">Lesson 6</div>
+      <h2>Client</h2>
+      <p>The client connects to the server, initializes the session, lists tools, and calls tools when the model asks for them.</p>
+      <pre><code>await session.initialize()
+result = await session.list_tools()</nresponse = await session.call_tool("read_doc_contents", {"doc_id": "report.pdf"})</code></pre>
+    </section>
+
+    <section class="lesson" id="l7">
+      <div class="eyebrow">Lesson 7</div>
+      <h2>Resources</h2>
+      <p>Resources are read-only data exposed as URIs, such as a list of available docs or a specific document by id.</p>
+      <pre><code>@mcp.resource("docs://documents/{doc_id}")
+def fetch_doc(doc_id: str):
+    return docs[doc_id]</code></pre>
+      <p>Resources usually power autocomplete or prompt context injection, rather than model-controlled actions.</p>
+    </section>
+
+    <section class="lesson" id="l8">
+      <div class="eyebrow">Lesson 8</div>
+      <h2>Reading resources</h2>
+      <p>The app reads a resource itself and injects the data into the conversation. This is useful for things like showing a list of docs or adding file contents to a prompt before the model answers.</p>
+    </section>
+
+    <section class="lesson" id="l9">
+      <div class="eyebrow">Lesson 9</div>
+      <h2>Prompts</h2>
+      <p>Prompts are reusable instruction templates that the user can trigger. They are useful for common workflows like “format this document” or “summarize this thread.”</p>
+      <pre><code>@mcp.prompt(name="format")
+def format_document(doc_id: str):
+    return [UserMessage(f"Format {doc_id} as Markdown.")]
+</code></pre>
+    </section>
+
+    <section class="lesson" id="l10">
+      <div class="eyebrow">Lesson 10</div>
+      <h2>Using prompts in the client</h2>
+      <p>The client can list available prompts and then fetch a rendered prompt with arguments. The server can return a batch of prompt messages, which are then passed into the conversation.</p>
+    </section>
+
+    <section class="lesson" id="l11">
+      <div class="eyebrow">Lesson 11</div>
+      <h2>Review</h2>
+      <p>The easiest way to remember MCP is this:</p>
+      <ul>
+        <li><span class="pill p-tool">Tools</span> = model decides to act</li>
+        <li><span class="pill p-res">Resources</span> = app decides to fetch data</li>
+        <li><span class="pill p-prm">Prompts</span> = user triggers a workflow</li>
+      </ul>
+    </section>
+
+    <section class="lesson" id="gloss">
+      <div class="eyebrow">Reference</div>
+      <h2>Glossary</h2>
+      <div class="tbl"><table>
+        <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><b>MCP</b></td><td>Model Context Protocol</td></tr>
+          <tr><td><b>Host</b></td><td>The app that exposes the client and UI</td></tr>
+          <tr><td><b>Client</b></td><td>Communication layer between the app and the server</td></tr>
+          <tr><td><b>Server</b></td><td>Program exposing tools, resources, and prompts</td></tr>
+          <tr><td><b>Tool</b></td><td>Model-controlled action</td></tr>
+          <tr><td><b>Resource</b></td><td>App-controlled read-only data</td></tr>
+          <tr><td><b>Prompt</b></td><td>User-controlled reusable instruction template</td></tr>
+        </tbody></table></div>
+    </section>
+  </main>
+</div>
+</body>
+</html>
