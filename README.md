@@ -24,11 +24,10 @@ The page is structured like a course study companion and includes:
 
 ## View it
 
-The site is intended to be served as a GitHub Pages page at:
-
 https://mesesanb.github.io/mcp-study-guide/
 
-Once GitHub Pages is enabled for this repository, the HTML file at the root (`index.html`) will be the landing page.
+
+
 
 ## Repo contents
 
