@@ -1,5 +1,5 @@
 # MCP Study Guide
-
+Model Context Protocol
 This repository hosts a single-page HTML study guide for the Anthropic Academy course on the Model Context Protocol (MCP).
 
 ## What it's about
